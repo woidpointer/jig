@@ -4,4 +4,6 @@
 __pycache__
 jig.egg-info
 jig.yml
+cpptemplates
+_temp
 

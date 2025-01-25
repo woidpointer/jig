@@ -1,6 +1,8 @@
 import typer
+
 from typing import Optional
-from jig.utils import find_config_file
+import jig.cmds.project
+
 
 cli = typer.Typer()
 
@@ -9,16 +11,25 @@ cli = typer.Typer()
 def project(
     name: str,
     target: str = ".",
-    amsr_app: Optional[str] = typer.Option(None),
     app: Optional[str] = typer.Option(None),
     lib: Optional[str] = typer.Option(None),
     namespace: Optional[str] = typer.Option(""),
 ):
 
-    jig_config = find_config_file()
-    print(jig_config)
+    pj = jig.cmds.project.Project(name)
+    pj.generate(target)
 
-    print(f"Creating project: {name} in {target}")
+    # run_copy(
+    #     template,
+    #     output_dir,
+    #     data={
+    #         "module_namespace": namespace,
+    #         "module_name": name,
+    #         "module_namespace_snk": to_snake_case(namespace),
+    #         "module_name_snk": to_snake_case(name),
+    #     },
+    #     skip_if_exists=["__init__.py"],
+    # )
 
     # prj = Project(name, target)
     # prj.create()
