@@ -4,6 +4,7 @@ from typing import Optional
 import jig.cmds.project
 import jig.cmds.app
 import jig.cmds.lib
+import jig.cmds.cpp
 
 
 cli = typer.Typer()
@@ -15,7 +16,6 @@ def project(
     target: str = ".",
     app: Optional[str] = typer.Option(None),
     lib: Optional[str] = typer.Option(None),
-    namespace: Optional[str] = typer.Option(""),
 ):
 
     pj = jig.cmds.project.Project(name)
@@ -66,7 +66,8 @@ def lib(name: str, target: str = "."):
 
 @cli.command()
 def cpp(name: str, target: str = ".", namespace: str = ""):
-    print(f"Creating cpp: {name} in {target} ns: {namespace}")
+    cpp = jig.cmds.cpp.Cpp(name, namespace)
+    cpp.generate(target)
 
 
 def main():
