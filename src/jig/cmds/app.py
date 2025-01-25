@@ -10,7 +10,7 @@ from copier import run_copy
 class App:
     def __init__(self, name):
         self.template = None
-        self.name = name
+        self.name = name.lower()
 
         jig_config_file = find_config_file()
         with open(jig_config_file, "r") as fh:
@@ -34,4 +34,9 @@ class App:
             target,
             data={"appname": self.name, "appname_lcase": self.name.lower()},
         )
-        pass
+        # append to CMakeLists.txt
+        parent_cmake = f"{target}/CMakeLists.txt"
+        if Path(parent_cmake).is_file():
+            print(f"writing to: {parent_cmake}")
+            with open(parent_cmake, "a") as fh:
+                fh.write(f"add_subdirectory(app_{self.name})\n")

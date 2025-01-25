@@ -31,4 +31,3 @@ class Project:
         print(f"Creating project: {self.name} in {target}")
         project_template = f"{self.template}/cpp/project"
         run_copy(project_template, target, data={"project_name": self.name})
-        pass
