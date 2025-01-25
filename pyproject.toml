@@ -1,0 +1,30 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "jig"
+version = "0.1.0"
+authors = [
+  { name="woidpointer", email="woidpointer@gmail.com" }
+]
+description = "A c++ project jig."
+readme = "README.md"
+requires-python = ">=3.7"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+dependencies = [
+  "typer",
+  "copier",
+]
+
+[project.scripts]
+jig = "jig:main_cli"
+
+[tool.black]
+## black code formatter settings
+line-length = 100
+
