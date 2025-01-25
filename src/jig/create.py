@@ -3,6 +3,7 @@ import typer
 from typing import Optional
 import jig.cmds.project
 import jig.cmds.app
+import jig.cmds.lib
 
 
 cli = typer.Typer()
@@ -58,8 +59,9 @@ def app(name: str, target: str = "."):
 
 
 @cli.command()
-def lib(name: str, target: str = ".", namespace: str = ""):
-    print(f"Creating lib: {name} in {target}")
+def lib(name: str, target: str = "."):
+    lib = jig.cmds.lib.Lib(name)
+    lib.generate(target)
 
 
 @cli.command()
