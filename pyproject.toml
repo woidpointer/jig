@@ -28,5 +28,5 @@ jig = "jig:main_cli"
 
 [tool.black]
 ## black code formatter settings
-line-length = 100
+line-length = 80
 

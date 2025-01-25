@@ -2,6 +2,7 @@ import typer
 
 from typing import Optional
 import jig.cmds.project
+import jig.cmds.app
 
 
 cli = typer.Typer()
@@ -52,7 +53,8 @@ def project(
 
 @cli.command()
 def app(name: str, target: str = "."):
-    print(f"Creating app: {name} in {target}")
+    app = jig.cmds.app.App(name)
+    app.generate(target)
 
 
 @cli.command()
