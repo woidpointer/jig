@@ -20,7 +20,8 @@ dependencies = [
   "typer",
   "copier",
   "pyyaml",
-  "GitPython"
+  "GitPython",
+  "pytest"
 ]
 
 [project.scripts]

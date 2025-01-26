@@ -38,7 +38,8 @@ class Cpp:
                 "namespace": self.namespace,
                 "namespace_list": self._namespace_list(),
                 "namespace_rlist": self._namespace_rlist(),
-                "include_guard": camel_to_upper(self.name),
+                "include_guard": self._include_guard(),
+                "include_path": self._include_path(),
                 "Class": self.name,
             },
         )
@@ -48,3 +49,27 @@ class Cpp:
 
     def _namespace_rlist(self):
         return list(reversed(self._namespace_list()))
+
+    def _include_guard(self):
+        guard_list = []
+
+        if not (
+            len(self._namespace_list()) == 1 and self._namespace_list()[0] == ""
+        ):
+            guard_list += self._namespace_list()
+
+        guard_list.append(camel_to_upper(self.name))
+        guard_list.append("HPP")
+
+        return str("_".join(guard_list)).upper()
+
+    def _include_path(self):
+        include_list = []
+
+        if not (
+            len(self._namespace_list()) == 1 and self._namespace_list()[0] == ""
+        ):
+            include_list += self._namespace_list()
+
+        include_list.append(camel_to_snake(self.name) + ".hpp")
+        return "/".join(include_list)
